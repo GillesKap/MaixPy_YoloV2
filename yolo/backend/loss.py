@@ -123,8 +123,12 @@ class _Activator(object):
             box_classes : (N, 13, 13, 5, nb_class)
         """
         # bx = sigmoid(tx) + cx, by = sigmoid(ty) + cy
+        # batch_size = y_pred.shape[0]
+        # batch_size = 1
+        # grid_size = y_pred.shape[1]
         batch_size = tf.shape(y_pred)[0]
         grid_size = tf.shape(y_pred)[1]
+
         cell_grid = create_cell_grid(grid_size, batch_size)
         
         pred_box_xy = tf.sigmoid(y_pred[..., :2]) + cell_grid
