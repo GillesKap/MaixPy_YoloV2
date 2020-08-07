@@ -61,8 +61,7 @@ class YoloNetwork(object):
         
     def forward(self, image):
         def _get_input_size():
-            input_shape = self._model.get_input_shape_at(0)
-            _, h, w, _ = input_shape
+            _, h, w, _ = self._model.input.shape
             return h
             
         input_size = _get_input_size()
